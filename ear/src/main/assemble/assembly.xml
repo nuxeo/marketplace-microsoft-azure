@@ -1,0 +1,75 @@
+<project name="s3-assembly" default="build" xmlns:nx="urn:nuxeo-build" xmlns:artifact="urn:nuxeo-artifact">
+  <taskdef resource="org/nuxeo/build/antlib.xml" uri="urn:nuxeo-build" />
+  <taskdef resource="org/nuxeo/build/artifact/antlib.xml" uri="urn:nuxeo-artifact" />
+
+  <target name="init" unless="init.done">
+    <property name="outdir" value="${maven.project.build.directory}" />
+    <property name="nuxeo.ear" value="${outdir}/nuxeo.ear" />
+
+    <antcall target="expand" />
+    <property name="init.done" value="true" />
+  </target>
+
+  <target name="expand">
+    <artifact:nuxeo-expand includeTestScope="true" />
+    <artifact:print output="${outdir}/artifacts-azurebinaries.properties" mode="sdk" />
+    <artifact:print output="${outdir}/test-artifacts-azurebinaries.properties" mode="sdk" scopes="test" />
+    <artifact:print output="${outdir}/dependency-tree.log" />
+  </target>
+
+  <target name="build" depends="init" description="Build Nuxeo Azure storage">
+    <echo level="info">Building default Nuxeo Azure storage EAR</echo>
+    <delete failonerror="false" dir="${nuxeo.ear}" />
+    <mkdir dir="${nuxeo.ear}" />
+    <antcall target="build-standard" />
+    <antcall target="build-resources" />
+  </target>
+
+  <target name="build-standard" description="Build default distribution" depends="init">
+    <copy todir="${nuxeo.ear}/bundles" overwrite="true">
+      <artifact:set>
+        <includes>
+          <artifact groupId="org.nuxeo*" scope="!test" type="!pom" />
+        </includes>
+        <excludes>
+          <artifact groupId="org.nuxeo.lib*" />
+        </excludes>
+      </artifact:set>
+    </copy>
+
+    <antcall target="third-party-libraries" />
+
+    <copy file="${outdir}/artifacts-azurebinaries.properties" todir="${nuxeo.ear}" />
+    <copy file="${outdir}/test-artifacts-azurebinaries.properties" todir="${nuxeo.ear}" />
+
+    <zip destfile="${outdir}/${maven.project.artifactId}-${marketplace.azure.version}.zip"
+         basedir="${nuxeo.ear}" />
+    <artifact:attach file="${outdir}/${maven.project.artifactId}-${marketplace.azure.version}.zip" type="zip" />
+  </target>
+
+  <target name="third-party-libraries">
+    <copy todir="${nuxeo.ear}/lib" overwrite="true">
+      <artifact:set>
+        <includes>
+          <artifact groupId="!org.nuxeo*" scope="!test" />
+          <artifact groupId="org.nuxeo.lib*" scope="!test" />
+        </includes>
+      </artifact:set>
+    </copy>
+    <nx:rmdups dir="${nuxeo.ear}/lib" />
+  </target>
+
+  <target name="build-resources">
+    <delete dir="${outdir}/template-azure" failonerror="false" />
+    <copy todir="${outdir}/template-azure" overwrite="true">
+      <fileset dir="src/main/resources" />
+    </copy>
+
+    <zip destfile="${outdir}/${maven.project.artifactId}-${marketplace.azure.version}-resources.zip"
+         basedir="${outdir}/template-azure" />
+    <artifact:attach file="${outdir}/${maven.project.artifactId}-${maven.project.version}-resources.zip"
+                     type="zip"
+                     classifier="resources" />
+  </target>
+
+</project>

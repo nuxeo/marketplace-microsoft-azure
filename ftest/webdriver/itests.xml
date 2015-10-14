@@ -1,0 +1,43 @@
+<project name="s3-integration-tests" xmlns:nx="urn:nuxeo-build" xmlns:artifact="urn:nuxeo-artifact">
+  <taskdef resource="org/nuxeo/build/antlib.xml" uri="urn:nuxeo-build" />
+  <taskdef resource="org/nuxeo/build/artifact/antlib.xml" uri="urn:nuxeo-artifact" />
+  <taskdef resource="net/sf/antcontrib/antlib.xml" />
+
+  <property name="out.dir" value="${maven.project.build.directory}" />
+  <property name="classifier" value="nuxeo-cap" />
+  <property name="nuxeo.wizard.done" value="true" />
+
+  <unzip dest="${out.dir}/" overwrite="false">
+    <artifact:resolveFile key="org.nuxeo:nuxeo-ftest::zip" />
+  </unzip>
+  <import file="${out.dir}/nuxeo-ftest.xml" />
+
+  <property name="mp.install" value="file:${out.dir}/marketplace-${marketplace.azure.version}.zip" />
+
+  <target name="prepare-container">
+    <antcall target="set-conf">
+      <param name="name" value="nuxeo.storage.azure.container" />
+      <param name="value" value="nuxeo-ft-azure-test" />
+    </antcall>
+  </target>
+
+  <target name="cleanup-container">
+    <echo message="Container contents:" />
+    <exec executable="azure">
+      <arg line="storage blob list nuxeo-ft-azure-test" />
+    </exec>
+    <echo message="Deleting container." />
+    <exec executable="azure">
+      <arg line="storage container delete -q nuxeo-ft-azure-test" />
+    </exec>
+  </target>
+
+  <target name="prepare-azure-environment" depends="prepare-environment,prepare-container">
+    <copy todir="${out.dir}">
+      <artifact:file key="org.nuxeo.marketplace.microsoft-azure-online-storage:marketplace::zip" />
+    </copy>
+  </target>
+
+  <target name="cleanup-azure-environment" depends="cleanup-environment,cleanup-container" />
+
+</project>

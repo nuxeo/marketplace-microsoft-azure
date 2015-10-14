@@ -1,0 +1,26 @@
+<package type="addon" name="microsoft-azure-online-storage" version="@VERSION@">
+  <title>Microsft Azure Online Storage</title>
+  <description>
+    Microsoft Azure Online Storage is a component of the Nuxeo platform
+    that offers the option of storing files - the attachments that are
+    uploaded within a content object, Nuxeo binaries - in aa Microsoft
+    Azure container.
+
+    After installation, some configuration steps must be taken in order
+    for this addon to be enabled and use the proper credentials.
+    Check the linked page for installation instructions.
+  </description>
+  <home-page>https://doc.nuxeo.com/x/HABu</home-page>
+  <platforms>
+    <platform>cap-@DISTVERSION@</platform>
+  </platforms>
+  <hotreload-support>false</hotreload-support>
+  <supported>true</supported>
+  <require-terms-and-conditions-acceptance>true</require-terms-and-conditions-acceptance>
+  <production-state>production_ready</production-state>
+  <nuxeo-validation>nuxeo_certified</nuxeo-validation>
+  <vendor>Nuxeo</vendor>
+  <license>LGPL</license>
+  <license-url>http://www.gnu.org/licenses/lgpl-2.1.html</license-url>
+  <visibility>MARKETPLACE</visibility>
+</package>
