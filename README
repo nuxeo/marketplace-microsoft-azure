@@ -1,6 +1,0 @@
-To run the tests, use '-Pitest' (or run from ftest/webdriver).
-
-This requires:
-- having your Azure name and secret key in your environment (used by the binary manager)
-- having azure cmd installed and configured with the same keys (used for cleanup)
-

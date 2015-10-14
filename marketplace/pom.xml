@@ -12,24 +12,22 @@
   <name>Marketplace package of Nuxeo Azure Storage</name>
 
   <dependencies>
+    <!-- Base distribution(s) for the MP -->
+    <dependency>
+      <groupId>org.nuxeo.ecm.distribution</groupId>
+      <artifactId>nuxeo-distribution-cap</artifactId>
+      <type>pom</type>
+    </dependency>
     <dependency>
       <groupId>org.nuxeo.ecm.distribution</groupId>
       <artifactId>nuxeo-distribution-cap</artifactId>
       <type>zip</type>
       <scope>provided</scope>
     </dependency>
+
     <dependency>
-      <groupId>org.nuxeo.marketplace.microsoft-azure-online-storage</groupId>
-      <artifactId>ear</artifactId>
-      <type>zip</type>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.nuxeo.marketplace.microsoft-azure-online-storage</groupId>
-      <artifactId>ear</artifactId>
-      <classifier>resources</classifier>
-      <type>zip</type>
-      <scope>provided</scope>
+      <groupId>org.nuxeo.ecm.core</groupId>
+      <artifactId>nuxeo-core-binarymanager-azure</artifactId>
     </dependency>
   </dependencies>
 

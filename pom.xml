@@ -16,19 +16,6 @@
     <dependencies>
       <dependency>
         <groupId>org.nuxeo.marketplace.microsoft-azure-online-storage</groupId>
-        <artifactId>ear</artifactId>
-        <version>${project.version}</version>
-        <type>zip</type>
-      </dependency>
-      <dependency>
-        <groupId>org.nuxeo.marketplace.microsoft-azure-online-storage</groupId>
-        <artifactId>ear</artifactId>
-        <version>${project.version}</version>
-        <classifier>resources</classifier>
-        <type>zip</type>
-      </dependency>
-      <dependency>
-        <groupId>org.nuxeo.marketplace.microsoft-azure-online-storage</groupId>
         <artifactId>marketplace</artifactId>
         <version>${project.version}</version>
         <type>zip</type>
@@ -61,13 +48,12 @@
   </repositories>
 
   <modules>
-    <module>ear</module>
     <module>marketplace</module>
   </modules>
 
   <profiles>
     <profile>
-      <id>itest</id>
+      <id>ftest</id>
       <modules>
         <module>ftest/webdriver</module>
       </modules>

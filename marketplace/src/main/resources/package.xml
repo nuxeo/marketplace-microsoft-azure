@@ -12,7 +12,7 @@
   </description>
   <home-page>https://doc.nuxeo.com/x/HABu</home-page>
   <platforms>
-    <platform>cap-@DISTVERSION@</platform>
+    <platform>cap-@DISTRIB_VERSION@</platform>
   </platforms>
   <hotreload-support>false</hotreload-support>
   <supported>true</supported>
