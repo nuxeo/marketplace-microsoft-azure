@@ -82,7 +82,7 @@
             </goals>
             <configuration>
               <targets>
-                <target>prepare-s3-environment</target>
+                <target>prepare-azure-environment</target>
                 <target>start</target>
               </targets>
             </configuration>
@@ -96,7 +96,7 @@
             <configuration>
               <targets>
                 <target>stop</target>
-                <target>cleanup-s3-environment</target>
+                <target>cleanup-azure-environment</target>
               </targets>
             </configuration>
           </execution>

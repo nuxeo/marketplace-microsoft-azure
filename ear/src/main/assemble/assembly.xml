@@ -1,4 +1,4 @@
-<project name="s3-assembly" default="build" xmlns:nx="urn:nuxeo-build" xmlns:artifact="urn:nuxeo-artifact">
+<project name="azure-assembly" default="build" xmlns:nx="urn:nuxeo-build" xmlns:artifact="urn:nuxeo-artifact">
   <taskdef resource="org/nuxeo/build/antlib.xml" uri="urn:nuxeo-build" />
   <taskdef resource="org/nuxeo/build/artifact/antlib.xml" uri="urn:nuxeo-artifact" />
 
@@ -42,9 +42,9 @@
     <copy file="${outdir}/artifacts-azurebinaries.properties" todir="${nuxeo.ear}" />
     <copy file="${outdir}/test-artifacts-azurebinaries.properties" todir="${nuxeo.ear}" />
 
-    <zip destfile="${outdir}/${maven.project.artifactId}-${marketplace.azure.version}.zip"
+    <zip destfile="${outdir}/${maven.project.artifactId}-${project.version}.zip"
          basedir="${nuxeo.ear}" />
-    <artifact:attach file="${outdir}/${maven.project.artifactId}-${marketplace.azure.version}.zip" type="zip" />
+    <artifact:attach file="${outdir}/${maven.project.artifactId}-${project.version}.zip" type="zip" />
   </target>
 
   <target name="third-party-libraries">
@@ -65,7 +65,7 @@
       <fileset dir="src/main/resources" />
     </copy>
 
-    <zip destfile="${outdir}/${maven.project.artifactId}-${marketplace.azure.version}-resources.zip"
+    <zip destfile="${outdir}/${maven.project.artifactId}-${project.version}-resources.zip"
          basedir="${outdir}/template-azure" />
     <artifact:attach file="${outdir}/${maven.project.artifactId}-${maven.project.version}-resources.zip"
                      type="zip"

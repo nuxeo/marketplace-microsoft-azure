@@ -9,7 +9,7 @@
     <copy todir="${maven.project.build.directory}/marketplace">
       <fileset dir="src/main/resources" />
       <filterset>
-        <filter token="VERSION" value="${marketplace.azure.version}" />
+        <filter token="VERSION" value="${project.version}" />
         <filter token="DISTVERSION" value="${nuxeo.distribution.version}" />
       </filterset>
     </copy>
@@ -17,25 +17,25 @@
       <artifact:file key="org.nuxeo.ecm.distribution:nuxeo-distribution-cap::zip" />
       <artifact:file key="${maven.project.groupId}:ear::zip" />
     </copy>
-    <nx:zipdiff file1="${maven.project.build.directory}/ear-${marketplace.azure.version}.zip"
+    <nx:zipdiff file1="${maven.project.build.directory}/ear-${project.version}.zip"
                 file2="${maven.project.build.directory}/nuxeo-distribution-cap-${nuxeo.distribution.version}.zip"
                 includesfile="${maven.project.build.directory}/includes"
                 excludesfile="${maven.project.build.directory}/excludesfile"
                 patternsetid="azure.versus.cap">
     </nx:zipdiff>
-    <unzip src="${maven.project.build.directory}/ear-${marketplace.azure.version}.zip"
+    <unzip src="${maven.project.build.directory}/ear-${project.version}.zip"
            dest="${maven.project.build.directory}/marketplace/install">
       <patternset refid="azure.versus.cap" />
     </unzip>
 
-    <!-- s3binaries template -->
+    <!-- azure template -->
     <unzip dest="${maven.project.build.directory}/marketplace/install/templates" overwrite="true">
       <artifact:file key="${maven.project.groupId}:ear::zip:resources" />
     </unzip>
 
-    <zip destfile="${maven.project.build.directory}/${maven.project.artifactId}-${marketplace.azure.version}.zip"
+    <zip destfile="${maven.project.build.directory}/${maven.project.artifactId}-${project.version}.zip"
          basedir="${maven.project.build.directory}/marketplace" />
-    <artifact:attach file="${maven.project.build.directory}/${maven.project.artifactId}-${marketplace.azure.version}.zip"
+    <artifact:attach file="${maven.project.build.directory}/${maven.project.artifactId}-${project.version}.zip"
                      type="zip" />
   </target>
 

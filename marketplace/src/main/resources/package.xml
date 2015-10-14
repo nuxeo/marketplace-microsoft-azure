@@ -3,7 +3,7 @@
   <description>
     Microsoft Azure Online Storage is a component of the Nuxeo platform
     that offers the option of storing files - the attachments that are
-    uploaded within a content object, Nuxeo binaries - in aa Microsoft
+    uploaded within a content object, Nuxeo binaries - in a Microsoft
     Azure container.
 
     After installation, some configuration steps must be taken in order
@@ -20,7 +20,7 @@
   <production-state>production_ready</production-state>
   <nuxeo-validation>nuxeo_certified</nuxeo-validation>
   <vendor>Nuxeo</vendor>
-  <license>LGPL</license>
+  <license>LGPL 2.1</license>
   <license-url>http://www.gnu.org/licenses/lgpl-2.1.html</license-url>
   <visibility>MARKETPLACE</visibility>
 </package>
