@@ -10,7 +10,7 @@
   <artifactId>microsoft-azure-online-storage-parent</artifactId>
   <packaging>pom</packaging>
   <name>Nuxeo Microsoft Azure Storage Marketplace Parent</name>
-  <version>1.0.0</version>
+  <version>1.0.2-SNAPSHOT</version>
 
   <dependencyManagement>
     <dependencies>
