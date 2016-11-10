@@ -12,7 +12,8 @@
   </description>
   <home-page>https://doc.nuxeo.com/x/WAClAQ</home-page>
   <platforms>
-    <platform>server-@DISTRIB_VERSION@*</platform>
+    <platform>server-@DISTRIB_VERSION@</platform>
+    <platform>server-@DISTRIB_VERSION@-*</platform>
   </platforms>
   <hotreload-support>false</hotreload-support>
   <supported>true</supported>
