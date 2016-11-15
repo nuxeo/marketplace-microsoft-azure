@@ -4,14 +4,15 @@
   <taskdef resource="net/sf/antcontrib/antlib.xml" />
 
   <property name="out.dir" value="${maven.project.build.directory}" />
-  <property name="mp.install" value="nuxeo-jsf-ui" />
 
   <unzip dest="${out.dir}/" overwrite="false">
     <artifact:resolveFile key="org.nuxeo:nuxeo-ftest::zip" />
   </unzip>
   <import file="${out.dir}/nuxeo-ftest.xml" />
 
-  <property name="mp.install" value="file:${out.dir}/marketplace-${maven.project.version}.zip" />
+  <property name="mp.install"
+            value="file:${out.dir}/nuxeo-marketplace-jsf-ui-${nuxeo.distribution.version}.zip,
+    file:${out.dir}/marketplace-${maven.project.version}.zip" />
 
   <target name="prepare-container">
     <antcall target="set-conf">
@@ -33,6 +34,7 @@
 
   <target name="prepare-azure-environment" depends="prepare-environment,prepare-container">
     <copy todir="${out.dir}">
+      <artifact:file key="org.nuxeo.ecm.distribution:nuxeo-marketplace-jsf-ui::zip" />
       <artifact:file key="org.nuxeo.marketplace.microsoft-azure-online-storage:marketplace::zip" />
     </copy>
   </target>
