@@ -1,9 +1,9 @@
 <package type="addon" name="microsoft-azure-online-storage" version="@VERSION@">
-  <title>Microsft Azure Online Storage</title>
+  <title>Microsoft Azure Online Storage</title>
   <description>
     The Microsoft Azure Online Storage addon is a Nuxeo Binary Manager that stores binaries in an Azure Storage container, with ability to plug to the Azure CDN service.
   </description>
-  <home-page>https://doc.nuxeo.com/x/WAClAQ</home-page>
+  <home-page>https://doc.nuxeo.com/nxdoc/microsoft-azure-online-storage/</home-page>
   <platforms>
     <platform>server-@DISTRIB_VERSION@</platform>
     <platform>server-@DISTRIB_VERSION@-*</platform>
